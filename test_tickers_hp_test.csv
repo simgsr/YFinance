@@ -1,0 +1,12 @@
+Ticker,Score,Failed_Criteria,Total_Criteria
+002304.SZ,8,"P/B (<1.5) (Value: 2.09, Threshold: 1.5)",9
+1425.HK,8,"Debt/Equity (<0.5) (Value: 3.56, Threshold: 0.5)",9
+1890.HK,8,"Debt/Equity (<0.5) (Value: 17.85, Threshold: 0.5)",9
+2530.HK,8,"Debt/Equity (<0.5) (Value: 1.18, Threshold: 0.5)",9
+2660.HK,8,"Debt/Equity (<0.5) (Value: 0.96, Threshold: 0.5)",9
+300360.SZ,8,"P/B (<1.5) (Value: 2.06, Threshold: 1.5)",9
+300770.SZ,8,"P/B (<1.5) (Value: 2.34, Threshold: 1.5)",9
+603339.SS,8,"ROE (>15%) (Value: 0.11, Threshold: 0.15)",9
+8140.HK,8,"Debt/Equity (<0.5) (Value: 1.65, Threshold: 0.5)",9
+9979.HK,9,All criteria met,9
+9997.HK,8,"P/B (<1.5) (Value: 3.23, Threshold: 1.5)",9

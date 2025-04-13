@@ -3,8 +3,6 @@ import pandas as pd
 from datetime import datetime
 import os
 import math
-import subprocess
-import sys
 from textwrap import fill
 
 # =====================
@@ -240,33 +238,73 @@ def get_tickers_from_file(file_path):
         print(f"❌ Error reading file: {e}")
         return None
 
-def run_external_stockinfo(tickers):
-    """Execute external yf_get_stockinfo.py script with tickers"""
-    try:
-        script_path = os.path.join(os.path.dirname(__file__), "yf_get_stockinfo.py")
+def yfinance_multi_ticker(symbols):
+    for symbol in symbols:
+        try:
+            stock = yf.Ticker(symbol)
+            filename = f"{symbol}_data.xlsx"
+            with pd.ExcelWriter(filename, engine='openpyxl') as writer:
+                income = stock.income_stmt.reset_index().rename(columns={'index': 'Metric'})
+                balance = stock.balance_sheet.reset_index().rename(columns={'index': 'Metric'})
+                cashflow = stock.cashflow.reset_index().rename(columns={'index': 'Metric'})
+                financials = pd.concat([
+                    income.assign(Statement='Income Statement'),
+                    balance.assign(Statement='Balance Sheet'),
+                    cashflow.assign(Statement='Cash Flow')
+                ], ignore_index=True)
+                financials.to_excel(writer, sheet_name='Financials', index=False)
 
-        # Build command: python yf_get_stockinfo.py ticker1 ticker2...
-        command = [sys.executable, script_path] + tickers
+                fundamentals = pd.DataFrame.from_dict(stock.info, orient='index', columns=['Value'])
+                fundamentals.to_excel(writer, sheet_name='Fundamentals')
 
-        result = subprocess.run(
-            command,
-            check=True,
-            capture_output=True,
-            text=True
-        )
-        print("\n" + result.stdout)
-        if result.stderr:
-            print("Errors:", result.stderr)
+                history = stock.history(period="max")
+                if not history.empty:
+                    history.index = history.index.tz_localize(None)
+                    history = history.reset_index()
+                    history.to_excel(writer, sheet_name='Historical Prices', index=False)
 
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to run external script: {str(e)}")
-    except Exception as e:
-        print(f"Unexpected error: {str(e)}")
+                def get_last_5_years(df):
+                    return df.iloc[:, :5] if len(df.columns) >=5 else df
+
+                income_5 = get_last_5_years(stock.income_stmt)
+                balance_5 = get_last_5_years(stock.balance_sheet)
+                cashflow_5 = get_last_5_years(stock.cashflow)
+
+                liabilities_metric = 'Total Liabilities'
+                if 'Total Liabilities' not in balance_5.index:
+                    liabilities_metric = 'Total Liabilities Net Minority Interest'
+
+                key_metrics = [
+                    'Total Revenue', 'Net Income', 'Diluted EPS',
+                    'Total Assets', liabilities_metric, 'Free Cash Flow'
+                ]
+
+                key_data = []
+                for metric in key_metrics:
+                    data_row = {'Metric': metric}
+                    for year_col in income_5.columns:
+                        year = year_col.strftime('%Y')
+                        if metric in income_5.index:
+                            data_row[year] = income_5.loc[metric, year_col]
+                        elif metric in balance_5.index:
+                            data_row[year] = balance_5.loc[metric, year_col]
+                        elif metric in cashflow_5.index:
+                            data_row[year] = cashflow_5.loc[metric, year_col]
+                        else:
+                            data_row[year] = 'N/A'
+                    key_data.append(data_row)
+
+                key_df = pd.DataFrame(key_data)
+                key_df.to_excel(writer, sheet_name='Key Statistics', index=False)
+
+            print(f"Saved {symbol} data to {filename}")
+        except Exception as e:
+            print(f"Error processing {symbol}: {str(e)}")
 
 if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
     print("📈 Stock Analysis Tool")
-    print(fill("This tool evaluates stocks and optionally generates detailed financial data using external scripts.", width=80))
+    print(fill("This tool evaluates stocks and optionally generates detailed financial data.", width=80))
 
     while True:
         csv_path = input("\nPlease enter the path to your CSV file containing ticker symbols: ").strip()
@@ -288,13 +326,13 @@ if __name__ == "__main__":
         if high_performers:
             print(f"\nFound {len(high_performers)} high-performing tickers (≥85%): {', '.join(high_performers)}")
             while True:
-                generate_info = input("\nGenerate detailed stock info using external script? (yes/no): ").lower().strip()
+                generate_info = input("\nWould you like to generate detailed stock info for these high performers? (yes/no): ").lower().strip()
                 if generate_info in ['yes', 'no']:
                     break
                 print("Please enter 'yes' or 'no'")
 
             if generate_info == 'yes':
-                print("\nExecuting external stock info script...")
-                run_external_stockinfo(high_performers)
+                print("\nGenerating detailed stock information for high performers...")
+                yfinance_multi_ticker(high_performers)
 
     print("\n" + "=" * 80)

@@ -241,9 +241,9 @@ def get_tickers_from_file(file_path):
         return None
 
 def run_external_stockinfo(tickers):
-    """Execute external yf_get_stockinfo.py script with tickers"""
+    """Execute external yf_get_stockinfo_bg.py script with tickers"""
     try:
-        script_path = os.path.join(os.path.dirname(__file__), "yf_get_stockinfo.py")
+        script_path = os.path.join(os.path.dirname(__file__), "yf_get_stockinfo_bg.py")
 
         # Build command: python yf_get_stockinfo.py ticker1 ticker2...
         command = [sys.executable, script_path] + tickers

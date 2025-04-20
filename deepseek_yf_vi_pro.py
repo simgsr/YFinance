@@ -27,7 +27,7 @@ def analyze_with_deepseek(prompt):
             model="deepseek-r1",
             prompt=prompt,
             options={
-                'temperature': 0.1,  # Lower for more consistent, analytical responses
+                'temperature': 0,  # Lower for more consistent, analytical responses
                 'num_ctx': 16384,     # Larger context for detailed analysis
                 'system': """You are a value investing analyst specializing in fundamental analysis.
                 Always provide: 1) DCF, 2) P/E relative, and 3) P/FCF valuations with calculations.

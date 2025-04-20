@@ -1,0 +1,25 @@
+📈 Stock Analysis Report: 2660.HK (Zengame Technology Holding Limited)
+📅 2025-04-16 02:43:39
+💵 Current Price: $2.20
+🏭 Sector: Communication Services
+🏢 Industry: Electronic Gaming & Multimedia
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: $5.31 (Weight: 25.3%, Confidence: 60%)
+- PFCF: Not available
+
+🎯 Weighted Fair Value: $5.31
+
+📊 Key Metrics:
+- P/E Ratio: 5.00
+- Debt/Equity: 0.96
+- Return on Equity: 0.18
+- Price/Book: 0.87
+- Current Ratio: 8.83
+- Operating Margin %: 0.29
+- Dividend Yield %: 6.67
+- Beta: 0.51
+
+💡 Recommendation: STRONG BUY (Undervalued)
+   (Current: $2.20 vs Fair: $5.31)

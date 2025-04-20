@@ -1,0 +1,27 @@
+📈 Stock Analysis Report: 300360.SZ (Hangzhou Sunrise Technology Co.,Ltd.)
+📅 2025-04-16
+💵 Current Price: $16.04
+🏭 Sector: Technology
+🏢 Industry: Electronic Components
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: Not available
+- PFCF: $27.65 (Weight: 30.0%, Confidence: 65%)
+
+🎯 Weighted Fair Value: $8.30
+
+📊 Key Metrics:
+- P/E Ratio: 11.54
+- Debt/Equity: 0.02
+- FCF Yield % (FCF/Price): 0.06
+- Return on Equity: 0.19
+- FCF Margin %: 0.25
+- Price/Book: 2.10
+- Current Ratio: 4.75
+- Operating Margin %: 0.45
+- Dividend Yield %: 4.34
+- Beta: -0.02
+
+💡 Recommendation: STRONG SELL (Overvalued)
+   (Current: $16.04 vs Fair: $8.30)

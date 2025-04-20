@@ -1,0 +1,25 @@
+=== Value Investing Analysis Report ===
+Ticker: 1398.HK (ICBC)
+Date: 2025-04-16
+Price: $5.32
+Sector: Financial Services
+Industry: Banks - Diversified
+
+## Valuation Summary
+- Dcf: $-443.40
+- Pe Relative: $15.60
+- Weighted Average: $-252.15
+
+**Weighted Average Intrinsic Value**: $-252.15 (-4839.7% premium)
+
+## Financial Health Assessment
+- P/E Ratio: 5.12 (PASS)
+- FCF Yield % (FCF/Price): -0.12 (FAIL)
+- Return on Equity: 0.09 (FAIL)
+- FCF Margin %: -0.44 (FAIL)
+- Price/Book: 0.52 (PASS)
+- Operating Margin %: 0.62 (PASS)
+- Dividend Yield %: 12.54 (PASS)
+- Beta: 0.25 (PASS)
+
+## Recommendation: SELL

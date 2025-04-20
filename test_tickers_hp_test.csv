@@ -10,3 +10,4 @@ Ticker,Score,Failed_Criteria,Total_Criteria
 8140.HK,8,"Debt/Equity (<0.5) (Value: 1.65, Threshold: 0.5)",9
 9979.HK,9,All criteria met,9
 9997.HK,8,"P/B (<1.5) (Value: 3.23, Threshold: 1.5)",9
+goog,,,

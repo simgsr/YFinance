@@ -1,0 +1,6 @@
+2025-04-16 08:43:52,283 - ERROR - 404 Client Error: Not Found for url: https://query2.finance.yahoo.com/v10/finance/quoteSummary/TICKER?modules=financialData%2CquoteType%2CdefaultKeyStatistics%2CassetProfile%2CsummaryDetail&corsDomain=finance.yahoo.com&formatted=false&symbol=TICKER&crumb=rxTvL%2FLOiFe
+2025-04-16 08:43:52,283 - WARNING - Invalid ticker skipped: TICKER
+2025-04-16 08:43:52,346 - INFO - Loaded 1 valid tickers
+2025-04-16 08:43:53,723 - INFO - Processing ticker: 002304.SZ
+2025-04-16 08:44:55,900 - WARNING - No valid weekly data points for 002304.SZ
+2025-04-16 08:44:55,900 - WARNING - Skipping 002304.SZ due to data issues

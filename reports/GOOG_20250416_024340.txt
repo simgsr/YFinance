@@ -1,0 +1,27 @@
+📈 Stock Analysis Report: GOOG (Alphabet Inc.)
+📅 2025-04-16 02:43:40
+💵 Current Price: $158.30
+🏭 Sector: Communication Services
+🏢 Industry: Internet Content & Information
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: $100.29 (Weight: 16.0%, Confidence: 60%)
+- PFCF: $169.01 (Weight: 51.5%, Confidence: 65%)
+
+🎯 Weighted Fair Value: $152.73
+
+📊 Key Metrics:
+- P/E Ratio: 19.69
+- Debt/Equity: 8.65
+- FCF Yield % (FCF/Price): 0.03
+- Return on Equity: 0.33
+- FCF Margin %: 0.16
+- Price/Book: 5.95
+- Current Ratio: 1.84
+- Operating Margin %: 0.34
+- Dividend Yield %: 0.50
+- Beta: 1.03
+
+💡 Recommendation: HOLD (Fairly Valued)
+   (Current: $158.30 vs Fair: $152.73)

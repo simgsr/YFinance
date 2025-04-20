@@ -1,0 +1,27 @@
+📈 Stock Analysis Report: 1890.HK (CHINA KEPEI)
+📅 2025-04-16
+💵 Current Price: $1.24
+🏭 Sector: Consumer Defensive
+🏢 Industry: Education & Training Services
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: Not available
+- PFCF: $2.44 (Weight: 30.0%, Confidence: 65%)
+
+🎯 Weighted Fair Value: $0.73
+
+📊 Key Metrics:
+- P/E Ratio: 2.82
+- Debt/Equity: 17.85
+- FCF Yield % (FCF/Price): 0.17
+- Return on Equity: 0.17
+- FCF Margin %: 0.25
+- Price/Book: 0.49
+- Current Ratio: 0.75
+- Operating Margin %: 0.43
+- Dividend Yield %: 10.24
+- Beta: 0.57
+
+💡 Recommendation: STRONG SELL (Overvalued)
+   (Current: $1.24 vs Fair: $0.73)

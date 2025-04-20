@@ -1,0 +1,24 @@
+📈 Stock Analysis Report: 603339.SS (Square Technology Group Co.,Ltd)
+📅 2025-04-16
+💵 Current Price: $11.15
+🏭 Sector: Industrials
+🏢 Industry: Specialty Industrial Machinery
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: Not available
+- PFCF: $-6.64 (Weight: 30.0%, Confidence: 65%)
+
+🎯 Weighted Fair Value: $-1.99
+
+📊 Key Metrics:
+- P/E Ratio: 12.67
+- Debt/Equity: 0.00
+- FCF Yield % (FCF/Price): -0.05
+- Return on Equity: 0.11
+- FCF Margin %: -0.08
+- Price/Book: 1.35
+- Current Ratio: 3.19
+- Operating Margin %: 0.13
+- Dividend Yield %: 2.36
+- Beta: 0.47

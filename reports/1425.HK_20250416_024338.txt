@@ -1,0 +1,25 @@
+📈 Stock Analysis Report: 1425.HK (JUSTIN ALLEN H)
+📅 2025-04-16 02:43:38
+💵 Current Price: $0.72
+🏭 Sector: Consumer Cyclical
+🏢 Industry: Apparel Manufacturing
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: $1.07 (Weight: 31.9%, Confidence: 60%)
+- PFCF: Not available
+
+🎯 Weighted Fair Value: $1.07
+
+📊 Key Metrics:
+- P/E Ratio: 5.14
+- Debt/Equity: 3.56
+- Return on Equity: 0.22
+- Price/Book: 1.08
+- Current Ratio: 4.24
+- Operating Margin %: 0.22
+- Dividend Yield %: 8.00
+- Beta: 0.31
+
+💡 Recommendation: STRONG BUY (Undervalued)
+   (Current: $0.72 vs Fair: $1.07)

@@ -1,0 +1,27 @@
+📈 Stock Analysis Report: 002304.SZ (Jiangsu Yanghe Distillery Co., Ltd.)
+📅 2025-04-16
+💵 Current Price: $73.45
+🏭 Sector: Consumer Defensive
+🏢 Industry: Beverages - Wineries & Distilleries
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: Not available
+- PFCF: $15.11 (Weight: 30.0%, Confidence: 65%)
+
+🎯 Weighted Fair Value: $4.53
+
+📊 Key Metrics:
+- P/E Ratio: 13.19
+- Debt/Equity: 0.12
+- FCF Yield % (FCF/Price): 0.02
+- Return on Equity: 0.16
+- FCF Margin %: 0.06
+- Price/Book: 2.07
+- Current Ratio: 4.67
+- Operating Margin %: 0.11
+- Dividend Yield %: 9.49
+- Beta: 1.13
+
+💡 Recommendation: STRONG SELL (Overvalued)
+   (Current: $73.45 vs Fair: $4.53)

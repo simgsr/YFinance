@@ -1,0 +1,27 @@
+📈 Stock Analysis Report: 8140.HK (BOSA Technology Holdings Limited)
+📅 2025-04-16 02:43:40
+💵 Current Price: $0.10
+🏭 Sector: Basic Materials
+🏢 Industry: Steel
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: $0.29 (Weight: 27.6%, Confidence: 60%)
+- PFCF: $0.66 (Weight: 25.4%, Confidence: 65%)
+
+🎯 Weighted Fair Value: $0.47
+
+📊 Key Metrics:
+- P/E Ratio: 2.40
+- Debt/Equity: 1.65
+- FCF Yield % (FCF/Price): 0.45
+- Return on Equity: 0.18
+- FCF Margin %: 0.38
+- Price/Book: 0.41
+- Current Ratio: 10.97
+- Operating Margin %: 0.20
+- Dividend Yield %: 0.00
+- Beta: 1.22
+
+💡 Recommendation: STRONG BUY (Undervalued)
+   (Current: $0.10 vs Fair: $0.47)

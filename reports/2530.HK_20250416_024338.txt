@@ -1,0 +1,24 @@
+📈 Stock Analysis Report: 2530.HK (Numans Health Food Hldg Co)
+📅 2025-04-16 02:43:38
+💵 Current Price: $0.67
+🏭 Sector: Consumer Defensive
+🏢 Industry: Packaged Foods
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: $0.63 (Weight: 31.5%, Confidence: 60%)
+- PFCF: Not available
+
+🎯 Weighted Fair Value: $0.63
+
+📊 Key Metrics:
+- P/E Ratio: 8.38
+- Debt/Equity: 1.18
+- Return on Equity: 0.19
+- Price/Book: 1.33
+- Current Ratio: 10.63
+- Operating Margin %: 0.41
+- Dividend Yield %: 8.01
+
+💡 Recommendation: HOLD (Fairly Valued)
+   (Current: $0.67 vs Fair: $0.63)

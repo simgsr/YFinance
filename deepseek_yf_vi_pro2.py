@@ -21,17 +21,20 @@ DEEPSEEK_DEFAULT_CRITERIA = {
 # ANALYSIS MODULES
 # ======================
 def analyze_with_deepseek(prompt):
-    """Use DeepSeek's value investing trained model for consistent analysis"""
+    """Use DeepSeek's value investing trained model for concise analysis"""
     try:
         response = ollama.generate(
-            model="deepseek-llm",
+            model="deepseek-r1",
             prompt=prompt,
             options={
-                'temperature': 0.3,  # Lower for more consistent, analytical responses
-                'num_ctx': 8192,     # Larger context for detailed analysis
-                'system': """You are a value investing analyst specializing in fundamental analysis.
-                Always provide: 1) DCF, 2) P/E relative, and 3) P/FCF valuations with calculations.
-                Give specific intrinsic value ranges and clear buy/sell recommendations."""
+                'temperature': 0.1,
+                'num_ctx': 16384,
+                'system': """You are a value investing analyst. Provide complete analysis including:
+                1) DCF, P/E relative, and P/FCF valuations with key calculations
+                2) Specific intrinsic value ranges
+                3) Clear buy/sell recommendations with price targets
+                4) Key risks assessment
+                Use bullet points and maintain clear structure."""
             }
         )
         return response["response"]
@@ -156,42 +159,95 @@ def get_user_criteria(stock_data):
 
 def generate_report(stock_data, user_criteria, analysis):
     """Generate enhanced report with consistent structure"""
-    report = f"""
+    sections = [
+        _generate_header(stock_data),
+        _generate_metrics_evaluation(stock_data, user_criteria),
+        _generate_custom_criteria(user_criteria),
+        _generate_analysis_summary(analysis)
+    ]
+    return "\n\n".join(sections)
+
+def _generate_header(stock_data):
+    """Generate standardized report header"""
+    header = f"""
 📈 **Advanced Stock Analysis Report** 📉
+{'='*50}
 Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 Ticker: {stock_data['ticker']} ({stock_data['name']})
 Industry: {stock_data['industry']} | Sector: {stock_data['sector']}
-Current Price: ${stock_data['price']:.2f} {'(⚠️ Data limitations noted)' if any(v is None for v in stock_data['metrics'].values()) else ''}
+Current Price: ${stock_data['price']:.2f}
+{'='*50}"""
 
-🔍 **Key Metrics Evaluation:"""
+    if any(v is None for v in stock_data['metrics'].values()):
+        header += "\n⚠️ Note: Some data limitations exist (missing metrics)"
 
-    for metric, config in DEEPSEEK_DEFAULT_CRITERIA.items():
+    return header.strip()
+
+def _generate_metrics_evaluation(stock_data, user_criteria):
+    """Generate standardized metrics evaluation section"""
+    metrics_section = ["🔍 **Key Metrics Evaluation**"]
+
+    # Prioritize the most important metrics first
+    priority_metrics = ['pe', 'fcf_yield', 'roe', 'debt_equity', 'pb']
+
+    for metric in priority_metrics:
+        config = DEEPSEEK_DEFAULT_CRITERIA.get(metric, {})
         current_val = stock_data["metrics"].get(metric, None)
+
+        if current_val is None:
+            continue
+
         current_val_str = f"{current_val:.2f}" if isinstance(current_val, (int, float)) else "N/A"
         threshold = user_criteria[metric]
-        eval_result = evaluate_metric(current_val, threshold, config["compare"])
-        report += f"\n- {config['desc']}: {current_val_str} (Threshold: {config['compare']} {threshold}): {eval_result}"
+        eval_result = evaluate_metric(current_val, threshold, config.get("compare", ""))
 
-    if stock_data["metrics"].get("pfcf"):
-        report += f"\n- Price/FCF: {stock_data['metrics']['pfcf']:.2f}"
-    if stock_data["metrics"].get("beta"):
-        report += f"\n- Beta: {stock_data['metrics']['beta']:.2f}"
-    if stock_data.get("peers"):
-        report += f"\n- Industry Peers: {', '.join(stock_data['peers'][:3])}..."
+        metrics_section.append(
+            f"- {config.get('desc', metric)}: {current_val_str} "
+            f"(Threshold: {config.get('compare', '')} {threshold}): {eval_result}"
+        )
 
-    report += "\n\n📌 **Your Custom Criteria:"
+    # Add supplemental metrics if space allows
+    supplemental = ["\n📌 **Supplemental Metrics**"]
+    for metric in [m for m in DEEPSEEK_DEFAULT_CRITERIA if m not in priority_metrics]:
+        current_val = stock_data["metrics"].get(metric, None)
+        if current_val is not None:
+            current_val_str = f"{current_val:.2f}" if isinstance(current_val, (int, float)) else "N/A"
+            supplemental.append(
+                f"- {DEEPSEEK_DEFAULT_CRITERIA[metric]['desc']}: {current_val_str}"
+            )
+
+    metrics_section.extend(supplemental)
+    return "\n".join(metrics_section)
+
+def _generate_custom_criteria(user_criteria):
+    """Generate standardized custom criteria section"""
+    criteria_section = ["📌 **Your Custom Criteria**"]
+
     for metric in user_criteria:
-        report += f"\n- {DEEPSEEK_DEFAULT_CRITERIA[metric]['desc']}: {DEEPSEEK_DEFAULT_CRITERIA[metric]['compare']} {user_criteria[metric]:.2f}"
+        config = DEEPSEEK_DEFAULT_CRITERIA.get(metric, {})
+        criteria_section.append(
+            f"- {config.get('desc', metric)}: "
+            f"{config.get('compare', '')} {user_criteria[metric]:.2f}"
+        )
 
-    report += f"\n\n📊 **DeepSeek-V3 Fundamental Analysis:**\n{analysis}"
-    return report
+    return "\n".join(criteria_section)
+
+def _generate_analysis_summary(analysis):
+    """Generate complete analysis summary without truncation"""
+    summary = ["📊 **DeepSeek-V3 Fundamental Analysis Summary**"]
+
+    # Split into sections and preserve structure
+    sections = analysis.split("\n\n")
+    summary.extend(sections)
+
+    return "\n\n".join(summary)
 
 # ======================
 # MAIN EXECUTION
 # ======================
 if __name__ == "__main__":
     print("\n🛠️  Advanced Stock Value Investing Analyzer (w/ DeepSeek-V3)")
-    print("🌟 Now with consistent 3-method intrinsic valuation\n")
+    print("🌟 Now with complete fundamental analysis reports\n")
 
     while True:
         ticker = input("\n🔢 Enter Stock Ticker (e.g., AAPL) or 'quit': ").strip().upper()
@@ -208,56 +264,40 @@ if __name__ == "__main__":
 
         # Build comprehensive DeepSeek prompt
         prompt = f"""
-Perform a comprehensive value investing analysis for {stock_data['ticker']} ({stock_data['name']}) using three valuation methods:
+Perform a complete value investing analysis for {stock_data['ticker']} ({stock_data['name']}) using this structure:
 
-Company Overview:
+[Valuation Summary]
+- DCF Range: $X - $Y (Key assumptions: ...)
+- P/E Relative Range: $A - $B
+- P/FCF Range: $C - $D
+- Composite Intrinsic Range: $E - $F
+
+[Recommendation]
 - Current Price: ${stock_data['price']:.2f}
+- Action: Buy/Hold/Sell
+- Price Targets:
+  - Strong Buy: <$G
+  - Buy: <$H
+  - Hold: $I-$J
+  - Sell: >$K
+- Suggested Allocation: X%
+
+[Key Risks]
+- Risk 1: Description
+- Risk 2: Description
+- Risk 3: Description
+
+[Investment Horizon]
+- Short/Medium/Long term
+
+Company Data:
 - Industry: {stock_data['industry']}
 - Sector: {stock_data['sector']}
-- Market Cap: {'${:,.2f}M'.format(stock_data['metrics'].get('market_cap')/1e6) if stock_data['metrics'].get('market_cap') else 'N/A'}
-
-Key Metrics:
-{'\n'.join(f"- {DEEPSEEK_DEFAULT_CRITERIA[metric]['desc']}: {stock_data['metrics'].get(metric, 'N/A')}"
-          for metric in user_criteria)}
-- Beta: {stock_data['metrics'].get('beta', 'N/A')}
-
-Required Analysis:
-1. Intrinsic Value Calculation (3 Methods):
-   A. Discounted Cash Flow (DCF):
-      - Use {stock_data['metrics'].get('revenue_growth', 'industry average')} revenue growth
-      - Conservative terminal growth rate
-      - Appropriate discount rate for sector
-      - Show calculations and assumptions
-
-   B. P/E Relative Valuation:
-      - Compare to industry average P/E of {stock_data['peers'][0] if stock_data.get('peers') else 'sector'}
-      - Adjust for company-specific risk factors
-      - Show calculation
-
-   C. P/FCF Valuation:
-      - Use current FCF yield of {stock_data['metrics'].get('fcf_yield', 'N/A')}
-      - Compare to industry norms
-      - Show calculation
-
-2. Valuation Range:
-   - Provide specific intrinsic value range from all three methods
-   - Highlight most reliable method based on data quality
-
-3. Buy/Sell Recommendations:
-   - Buy: <80% of lowest intrinsic value estimate
-   - Strong Buy: <70% of lowest estimate
-   - Sell: >120% of highest intrinsic value estimate
-   - Strong Sell: >150% of highest estimate
-
-4. Risk Assessment:
-   - Key financial risks (debt, margins, etc.)
-   - Industry/sector-specific risks
-   - Competitive position
-
-5. Final Recommendation:
-   - Clear Buy/Hold/Sell with price targets
-   - Time horizon for investment
-   - Suggested portfolio allocation (%)
+- Key Metrics:
+  - P/E: {stock_data['metrics'].get('pe', 'N/A')}
+  - FCF Yield: {stock_data['metrics'].get('fcf_yield', 'N/A')}
+  - ROE: {stock_data['metrics'].get('roe', 'N/A')}
+  - Debt/Equity: {stock_data['metrics'].get('debt_equity', 'N/A')}
 """
         print("\n🤖 Running DeepSeek Fundamental Analysis...")
         analysis = analyze_with_deepseek(prompt)

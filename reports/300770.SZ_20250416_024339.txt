@@ -1,0 +1,24 @@
+📈 Stock Analysis Report: 300770.SZ (Guangdong South New Media Co.,Ltd.)
+📅 2025-04-16 02:43:39
+💵 Current Price: $38.06
+🏭 Sector: Communication Services
+🏢 Industry: Entertainment
+
+🔍 Valuation Methods:
+- DCF: Not available
+- PE_RELATIVE: $63.32 (Weight: 25.5%, Confidence: 60%)
+- PFCF: Not available
+
+🎯 Weighted Fair Value: $63.32
+
+📊 Key Metrics:
+- P/E Ratio: 13.69
+- Debt/Equity: 0.31
+- Return on Equity: 0.18
+- Price/Book: 2.37
+- Operating Margin %: 0.48
+- Dividend Yield %: 4.96
+- Beta: 0.49
+
+💡 Recommendation: STRONG BUY (Undervalued)
+   (Current: $38.06 vs Fair: $63.32)
